@@ -12,19 +12,22 @@ import com.example.ys_task_mostafaameen.data.Retrofit.ApiClient;
 import com.example.ys_task_mostafaameen.data.Retrofit.OrdersApi;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderUpdateResponse;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+@Singleton
 public class OrderRepository{
 
 
-    private OrdersApi api;
+    private final OrdersApi api;
 
-    public OrderRepository() {
-        this.api = ApiClient.getClient().create(OrdersApi.class);
+    @Inject
+    public OrderRepository(OrdersApi api) {
+        this.api = api;
     }
-
     public LiveData<OrderResponse> getAllOrders (GetAllOrderRequest orderRequest){
 
         MutableLiveData<OrderResponse> data = new MutableLiveData<>();
@@ -37,7 +40,8 @@ public class OrderRepository{
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
-                    Log.d("API_RESPONSE", response.body().getData().toString());
+                    Log.d("API_RESPONSE", response.body().getResult().getErrMsg());
+                    Log.d("API_RESPONSE2", String.valueOf(response.body().getResult().getErrNo()));
 
                     data.setValue(response.body());
 

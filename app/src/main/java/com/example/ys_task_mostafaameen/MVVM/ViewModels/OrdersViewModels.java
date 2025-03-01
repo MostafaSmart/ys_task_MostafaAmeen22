@@ -10,19 +10,22 @@ import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderRes
 import com.example.ys_task_mostafaameen.data.Repositorys.OrderRepository;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderUpdateResponse;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class OrdersViewModels extends ViewModel {
 
 
-    private MutableLiveData<OrderResponse> orderResponseMutableLiveData;
+    private MutableLiveData<OrderResponse> orderResponseMutableLiveData = new MutableLiveData<>();
 
-    private MutableLiveData<OrderUpdateResponse> updateResponseMutableLiveData;
+    private MutableLiveData<OrderUpdateResponse> updateResponseMutableLiveData = new MutableLiveData<>();
 
     private OrderRepository orderRepository;
-
+    @Inject
     public OrdersViewModels(OrderRepository orderRepository) {
-        this.orderResponseMutableLiveData = new MutableLiveData<>();
-        this.updateResponseMutableLiveData = new MutableLiveData<>();
-        this.orderRepository=orderRepository;
+        this.orderRepository = orderRepository;
     }
 
     public void getAllOrders (GetAllOrderRequest getAllOrderRequest){

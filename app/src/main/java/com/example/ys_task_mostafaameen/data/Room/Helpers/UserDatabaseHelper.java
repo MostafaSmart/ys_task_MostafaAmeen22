@@ -7,13 +7,15 @@ import com.example.ys_task_mostafaameen.data.model.UserData;
 import com.example.ys_task_mostafaameen.data.Room.AppDatabase;
 import com.example.ys_task_mostafaameen.data.Room.Dao.UserDao;
 
+import javax.inject.Inject;
+
 public class UserDatabaseHelper {
 
     private final UserDao userDao;
 
-    public UserDatabaseHelper(Context context) {
-        AppDatabase db = AppDatabase.getInstance(context);
-        userDao = db.userDao();
+    @Inject
+    public UserDatabaseHelper(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public void insertUser(UserData userData) {

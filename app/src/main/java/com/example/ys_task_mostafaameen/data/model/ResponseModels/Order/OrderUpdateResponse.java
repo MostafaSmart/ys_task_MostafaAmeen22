@@ -1,5 +1,6 @@
 package com.example.ys_task_mostafaameen.data.model.ResponseModels.Order;
 
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResultResponse;
 import com.google.gson.annotations.SerializedName;
 
 public class OrderUpdateResponse {

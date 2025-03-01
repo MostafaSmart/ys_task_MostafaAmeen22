@@ -12,15 +12,19 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface OrdersApi {
+//    @POST("Order/GetOrders")
+//    Call<OrderResponse> getAllOrders(@Body GetAllOrderRequest orderRequest);
+//
+//
+//    @POST("Order/SetOrderProcessed")
+//    Call<OrderUpdateResponse> UpdateOrder(@Body UpdateOrderRequest updateOrderRequest);
+//
 
-    @POST("Order/GetOrders")
+    @POST("tables.php?action=GetOrders")
     Call<OrderResponse> getAllOrders(@Body GetAllOrderRequest orderRequest);
 
 
-    @POST("Order/SetOrderProcessed")
+    @POST("tables.php?action=SetOrderProcessed")
     Call<OrderUpdateResponse> UpdateOrder(@Body UpdateOrderRequest updateOrderRequest);
-
-
-
 
 }

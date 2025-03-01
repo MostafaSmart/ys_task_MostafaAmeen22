@@ -10,57 +10,47 @@ import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequ
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginResponse;
 //import com.example.ys_task_mostafaameen.data.Api.RequestModels
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 import com.example.ys_task_mostafaameen.data.model.UserData;
 import com.example.ys_task_mostafaameen.data.Retrofit.ApiClient;
 import com.example.ys_task_mostafaameen.data.Retrofit.LoginApi;
 //import com.example.ys_task_mostafaameen.data.Room.Entity.UserDataRoom;
 import com.example.ys_task_mostafaameen.data.Room.Helpers.UserDatabaseHelper;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+@Singleton
 public class LoginRepository {
+    private final LoginApi api;
+    private final UserDatabaseHelper dbHelper;
 
-
-    private LoginApi api;
-    private Context context;
-    UserDatabaseHelper dbHelper ;
-
-    public LoginRepository(Context context) {
-        this.api = ApiClient.getClient().create(LoginApi.class);
-        this.context = context;
-        dbHelper= new UserDatabaseHelper(context);
+    @Inject
+    public LoginRepository(LoginApi api, UserDatabaseHelper dbHelper) {
+        this.api = api;
+        this.dbHelper = dbHelper;
     }
 
-    public LiveData<LoginResponse> login (LoginRequest authRequest){
+    public LiveData<ResponseBaseModel<LoginData>> login (LoginRequest authRequest){
 
-        MutableLiveData<LoginResponse> data = new MutableLiveData<>();
+        MutableLiveData<ResponseBaseModel<LoginData>> data = new MutableLiveData<>();
         Log.d("data_request" ,authRequest.getValue().getUnitNo() + " " +authRequest.getValue().getPassword());
 
-        Call<LoginResponse> call = api.login(authRequest);
+        Call<ResponseBaseModel<LoginData>> call = api.login(authRequest);
 
-        call.enqueue(new Callback<LoginResponse>() {
+        call.enqueue(new Callback<ResponseBaseModel<LoginData>>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<ResponseBaseModel<LoginData>> call, Response<ResponseBaseModel<LoginData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
-                    Log.d("API_RESPONSE", response.toString());
+                    Log.d("API_RESPONSE", response.body().toString());
 
                     LoginData dd =  response.body().getData();
                     Log.d("API_RESPONSE22", dd.toString());
-                    UserData userData = dd.getUserData();
-
-                    UserData user = new UserData();
-
-                    user.setUserId("123");
-                    user.setAdminName("Admin");
-                    user.setPassword("pass123");
-                    user.setLogin("adminLogin");
-                    user.setTerminalNo("1001");
-                    user.setTerminalName("Terminal A");
-                 dbHelper.insertUser(user);
-
+                    setUserSave(dd.getUserData());
 
 
                     data.setValue(response.body());
@@ -75,7 +65,7 @@ public class LoginRepository {
 
             @Override
 
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBaseModel<LoginData>> call, Throwable t) {
                 Log.d("API_ERROR", t.getMessage());
                 data.setValue(null);
 
@@ -86,7 +76,17 @@ public class LoginRepository {
         return data;
     }
 
+    private void setUserSave(UserData userData) {
+        UserData user = new UserData();
 
+        user.setUserId(userData.getUserId());
+        user.setAdminName(userData.getAdminName());
+        user.setPassword(userData.getPassword());
+        user.setLogin(userData.getLogin());
+        user.setTerminalNo(userData.getTerminalNo());
+        user.setTerminalName(userData.getTerminalName());
+        dbHelper.insertUser(user);
+    }
 
 
 }

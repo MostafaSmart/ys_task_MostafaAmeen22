@@ -18,7 +18,7 @@ import com.example.ys_task_mostafaameen.UI.fragments.OrderFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-
+@AndroidEntryPoint
 public class HomeActivity extends AppCompatActivity {
     private TextView txtUserName;
     private ImageView imageView;

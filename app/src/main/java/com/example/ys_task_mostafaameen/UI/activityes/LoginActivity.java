@@ -24,6 +24,9 @@ import com.example.ys_task_mostafaameen.data.Repositorys.LoginRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
     private List<CardView> pinIndicators = new ArrayList<>();
     private StringBuilder pinCode = new StringBuilder();
@@ -37,10 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        LoginRepository userRepository = new LoginRepository(this);
-        AuthViewModelFactory authViewModelFactory = new AuthViewModelFactory(userRepository);
+//        LoginRepository userRepository = new LoginRepository(this);
+//        AuthViewModelFactory authViewModelFactory = new AuthViewModelFactory(userRepository);
+//
+//        authViewModel = new ViewModelProvider(this,authViewModelFactory).get(AuthModelView.class);
 
-        authViewModel = new ViewModelProvider(this,authViewModelFactory).get(AuthModelView.class);
+        authViewModel = new ViewModelProvider(this).get(AuthModelView.class);
 
         imelmnt();
 

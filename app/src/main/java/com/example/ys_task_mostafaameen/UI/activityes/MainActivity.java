@@ -14,8 +14,14 @@ import com.example.ys_task_mostafaameen.R;
 import com.example.ys_task_mostafaameen.data.model.UserData;
 import com.example.ys_task_mostafaameen.data.Room.Helpers.UserDatabaseHelper;
 
-public class MainActivity extends AppCompatActivity {
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+public class MainActivity extends AppCompatActivity {
+    @Inject
+    UserDatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +35,7 @@ public class MainActivity extends AppCompatActivity {
         animationView.animate().translationY(0f).setDuration(1500);
         animationView.playAnimation();
 
-//        new Handler().postDelayed(() -> {
-//            startActivity(new Intent(this, LoginActivity.class));
-//            finish();
-//        }, 3000);
 
-        UserDatabaseHelper dbHelper = new UserDatabaseHelper(this);
         new Thread(() -> {
             UserData retrievedUser = dbHelper.getUserById("123");
             boolean isUserLoggedIn = retrievedUser != null;

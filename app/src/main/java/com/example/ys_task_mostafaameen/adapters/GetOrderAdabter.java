@@ -117,12 +117,12 @@ public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener li
           }
 
 
-        Log.d("countssProdacr:", String.valueOf(data.getOrderDetails().size()));
-
-        ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
-        holder.recyclerViewOnePr.setLayoutManager(layoutManager);
-        holder.recyclerViewOnePr.setAdapter(adabter);
+//        Log.d("countssProdacr:", String.valueOf(data.getOrderDetails().size()));
+//
+//        ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+//        holder.recyclerViewOnePr.setLayoutManager(layoutManager);
+//        holder.recyclerViewOnePr.setAdapter(adabter);
 
 
 

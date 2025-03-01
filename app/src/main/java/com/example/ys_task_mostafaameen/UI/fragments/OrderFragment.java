@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.ys_task_mostafaameen.MVVM.ModelFactory.OrdersViewModelFactory;
 import com.example.ys_task_mostafaameen.MVVM.ViewModels.OrdersViewModels;
 import com.example.ys_task_mostafaameen.R;
 import com.example.ys_task_mostafaameen.adapters.GetOrderAdabter;
@@ -24,12 +23,15 @@ import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrd
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderMaster;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderResponse;
 import com.example.ys_task_mostafaameen.data.Repositorys.OrderRepository;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.ResultResponse;
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResultResponse;
 import com.example.ys_task_mostafaameen.helpers.Utils;
 
 import java.util.List;
 
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+@AndroidEntryPoint
 public class OrderFragment extends Fragment {
     private Button btnRefresh;
     private TextView trxtTitsl;
@@ -41,8 +43,10 @@ public class OrderFragment extends Fragment {
     private ImageButton btnPrevious;
     private TextView textEmptyMasseg;
     private androidx.recyclerview.widget.RecyclerView orderRecyclerView;
-    private OrdersViewModels ordersViewModels;
 
+    @Inject
+    OrderRepository orderRepository;
+    private OrdersViewModels ordersViewModels;
     public OrderFragment() {
     }
 
@@ -57,14 +61,14 @@ public class OrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
+        ordersViewModels = new ViewModelProvider(this).get(OrdersViewModels.class);
 
-        OrderRepository orderRepository = new OrderRepository();
-        OrdersViewModelFactory authViewModelFactory = new OrdersViewModelFactory(orderRepository);
 
-        ordersViewModels = new ViewModelProvider(this,authViewModelFactory).get(OrdersViewModels.class);
+//        OrderRepository orderRepository = new OrderRepository();
+//        OrdersViewModelFactory authViewModelFactory = new OrdersViewModelFactory(orderRepository);
+//
+//        ordersViewModels = new ViewModelProvider(this,authViewModelFactory).get(OrdersViewModels.class);
     }
 
     @Override

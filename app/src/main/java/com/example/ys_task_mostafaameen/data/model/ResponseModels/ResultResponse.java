@@ -1,4 +1,4 @@
-package com.example.ys_task_mostafaameen.data.model.ResponseModels.Order;
+package com.example.ys_task_mostafaameen.data.model.ResponseModels;
 
 import com.google.gson.annotations.SerializedName;
 
