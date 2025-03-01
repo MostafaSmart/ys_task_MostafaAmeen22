@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="199dp"
+    android:layout_height="41dp"
+    android:id="@+id/cardMAin"
+    android:layoutDirection="ltr"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/lite_blue"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:paddingTop="8dp"
+    android:layout_margin="8dp"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:id="@+id/colorView"
+            android:layout_width="5dp"
+            android:background="@color/primmery"
+            android:layout_height="match_parent"/>
+
+
+
+        <TextView
+            android:id="@+id/txtProdect"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="1 x Green Salad"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:checked="true"
+            android:layout_width="24dp"
+
+            android:layout_height="24dp"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

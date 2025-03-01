@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_orders"
+        android:icon="@drawable/order"
+        android:title="Orders" />
+
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/history"
+        android:title="History" />
+
+    <item
+        android:id="@+id/nav_summary"
+        android:icon="@drawable/summary"
+        android:title="Summary" />
+
+    <item
+        android:id="@+id/nav_language"
+        android:icon="@drawable/ic_language"
+        android:title="Language" />
+
+</menu>
