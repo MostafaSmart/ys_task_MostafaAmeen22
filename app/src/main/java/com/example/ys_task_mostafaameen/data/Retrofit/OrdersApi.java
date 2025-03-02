@@ -2,13 +2,14 @@ package com.example.ys_task_mostafaameen.data.Retrofit;
 
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.UpdateOrderRequest;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderResponse;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderUpdateResponse;
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderListData;
+
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
+
 import retrofit2.http.POST;
 
 public interface OrdersApi {
@@ -21,10 +22,10 @@ public interface OrdersApi {
 //
 
     @POST("tables.php?action=GetOrders")
-    Call<OrderResponse> getAllOrders(@Body GetAllOrderRequest orderRequest);
+    Call<ResponseBaseModel<OrderListData>> getAllOrders(@Body GetAllOrderRequest orderRequest);
 
 
     @POST("tables.php?action=SetOrderProcessed")
-    Call<OrderUpdateResponse> UpdateOrder(@Body UpdateOrderRequest updateOrderRequest);
+    Call<ResponseBaseModel<OrderListData>> UpdateOrder(@Body UpdateOrderRequest updateOrderRequest);
 
 }

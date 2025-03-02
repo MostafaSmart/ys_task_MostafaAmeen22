@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.ys_task_mostafaameen.MVVM.ViewModels.AuthModelView;
 import com.example.ys_task_mostafaameen.R;
 //import com.example.ys_task_mostafaameen.data.Room.Entity.UserDataRoom;
 import com.example.ys_task_mostafaameen.data.model.UserData;
@@ -22,11 +26,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MainActivity extends AppCompatActivity {
     @Inject
     UserDatabaseHelper dbHelper;
+
+    private AuthModelView authViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        authViewModel = new ViewModelProvider(this).get(AuthModelView.class);
         LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
 
         animationView.setAnimation("chef-illus3.json");
@@ -36,20 +43,27 @@ public class MainActivity extends AppCompatActivity {
         animationView.playAnimation();
 
 
-        new Thread(() -> {
-            UserData retrievedUser = dbHelper.getUserById("123");
-            boolean isUserLoggedIn = retrievedUser != null;
+        chikcUser();
 
+
+
+    }
+
+    private void chikcUser(){
+        authViewModel.getCurrentUserLiveData().observe(this, userData -> {
+
+            boolean isUserLoggedIn = userData != null;
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 Intent intent;
                 if (isUserLoggedIn) {
                     intent = new Intent(MainActivity.this, HomeActivity.class);
-                    intent.putExtra("user_id", retrievedUser.getUserId());                } else {
+                    intent.putExtra("user_id", userData.getUserId());
+                } else {
                     intent = new Intent(MainActivity.this, LoginActivity.class);
                 }
                 startActivity(intent);
                 finish();
             }, 3000);
-        }).start();
+        });
     }
     }

@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequest;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginResponse;
 //import com.example.ys_task_mostafaameen.data.Api.RequestModels
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 import com.example.ys_task_mostafaameen.data.model.UserData;
@@ -76,6 +75,10 @@ public class LoginRepository {
         return data;
     }
 
+    public LiveData<UserData> getCurrentUserLiveData() {
+        return dbHelper.getCurrentUserLiveData();
+    }
+
     private void setUserSave(UserData userData) {
         UserData user = new UserData();
 
@@ -86,6 +89,12 @@ public class LoginRepository {
         user.setTerminalNo(userData.getTerminalNo());
         user.setTerminalName(userData.getTerminalName());
         dbHelper.insertUser(user);
+    }
+
+
+    public boolean logout(){
+        dbHelper.logout();
+        return dbHelper.getUserCount()==0;
     }
 
 

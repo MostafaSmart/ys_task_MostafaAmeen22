@@ -40,10 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-//        LoginRepository userRepository = new LoginRepository(this);
-//        AuthViewModelFactory authViewModelFactory = new AuthViewModelFactory(userRepository);
-//
-//        authViewModel = new ViewModelProvider(this,authViewModelFactory).get(AuthModelView.class);
 
         authViewModel = new ViewModelProvider(this).get(AuthModelView.class);
 
@@ -124,21 +120,20 @@ public class LoginActivity extends AppCompatActivity {
             updateIndicators();
 
             if (pinCode.length() == PIN_LENGTH) {
-//                validatePin();
             }
         }
     }
 
     private void updateIndicators() {
-        int newColor = ContextCompat.getColor(this, R.color.primmery);
-        int oldColor =   ContextCompat.getColor(this, R.color.lite_blue);
+        int newColor = R.color.primmery;
+        int oldColor =   R.color.lite_blue;
 
 
         for (int i = 0; i < PIN_LENGTH; i++) {
             if (i < pinCode.length()) {
-                pinIndicators.get(i).setCardBackgroundColor(ColorStateList.valueOf(newColor));
+                 pinIndicators.get(i).setCardBackgroundColor(getResources().getColor(newColor));
             } else {
-                pinIndicators.get(i).setCardBackgroundColor(ColorStateList.valueOf(oldColor));
+                pinIndicators.get(i).setCardBackgroundColor(getResources().getColor(oldColor));
             }
         }
     }
@@ -148,12 +143,5 @@ public class LoginActivity extends AppCompatActivity {
             updateIndicators();
         }
     }
-    private void validatePin() {
-        String enteredPin = pinCode.toString();
-        if (enteredPin.equals("123456")) {
-        } else {
-            pinCode.setLength(0);
-            updateIndicators();
-        }
-    }
+
 }

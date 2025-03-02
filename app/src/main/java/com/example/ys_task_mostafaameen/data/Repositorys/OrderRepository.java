@@ -7,10 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.UpdateOrderRequest;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderResponse;
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderListData;
 import com.example.ys_task_mostafaameen.data.Retrofit.ApiClient;
 import com.example.ys_task_mostafaameen.data.Retrofit.OrdersApi;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderUpdateResponse;
+import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,20 +28,20 @@ public class OrderRepository{
     public OrderRepository(OrdersApi api) {
         this.api = api;
     }
-    public LiveData<OrderResponse> getAllOrders (GetAllOrderRequest orderRequest){
+    public LiveData<ResponseBaseModel<OrderListData>> getAllOrders (GetAllOrderRequest orderRequest){
 
-        MutableLiveData<OrderResponse> data = new MutableLiveData<>();
+        MutableLiveData<ResponseBaseModel<OrderListData>> data = new MutableLiveData<>();
         Log.d("data_request" ,orderRequest.toString() );
 
-        Call<OrderResponse> call = api.getAllOrders(orderRequest);
+        Call<ResponseBaseModel<OrderListData>> call = api.getAllOrders(orderRequest);
 
-        call.enqueue(new Callback<OrderResponse>() {
+        call.enqueue(new Callback<ResponseBaseModel<OrderListData>>() {
             @Override
-            public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
+            public void onResponse(Call<ResponseBaseModel<OrderListData>> call, Response<ResponseBaseModel<OrderListData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
-                    Log.d("API_RESPONSE", response.body().getResult().getErrMsg());
-                    Log.d("API_RESPONSE2", String.valueOf(response.body().getResult().getErrNo()));
+                    Log.d("GetOrderResponse:", response.body().getResult().getErrMsg().toString());
+
 
                     data.setValue(response.body());
 
@@ -55,7 +55,7 @@ public class OrderRepository{
 
             @Override
 
-            public void onFailure(Call<OrderResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBaseModel<OrderListData>> call, Throwable t) {
                 Log.d("API_ERROR", t.getMessage());
                 data.setValue(null);
 
@@ -68,19 +68,19 @@ public class OrderRepository{
 
 
 
-    public LiveData<OrderUpdateResponse> updateOrder (UpdateOrderRequest updateOrderRequest){
+    public LiveData<ResponseBaseModel<OrderListData>> updateOrder (UpdateOrderRequest updateOrderRequest){
 
-        MutableLiveData<OrderUpdateResponse> data = new MutableLiveData<>();
+        MutableLiveData<ResponseBaseModel<OrderListData>> data = new MutableLiveData<>();
         Log.d("data_request" ,updateOrderRequest.getValue().getP_ORDR_SRL().toString() );
 
-        Call<OrderUpdateResponse> call = api.UpdateOrder(updateOrderRequest);
+        Call<ResponseBaseModel<OrderListData>> call = api.UpdateOrder(updateOrderRequest);
 
-        call.enqueue(new Callback<OrderUpdateResponse>() {
+        call.enqueue(new Callback<ResponseBaseModel<OrderListData>>() {
             @Override
-            public void onResponse(Call<OrderUpdateResponse> call, Response<OrderUpdateResponse> response) {
+            public void onResponse(Call<ResponseBaseModel<OrderListData>> call, Response<ResponseBaseModel<OrderListData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
-                    Log.d("OrderUpdateResponse", response.body().toString());
+                    Log.d("OrderUpdateResponse:", response.body().getResult().getErrMsg().toString());
 
                     data.setValue(response.body());
 
@@ -94,7 +94,7 @@ public class OrderRepository{
 
             @Override
 
-            public void onFailure(Call<OrderUpdateResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBaseModel<OrderListData>> call, Throwable t) {
                 Log.d("OrderUpdate_ERROR", t.getMessage());
                 data.setValue(null);
 

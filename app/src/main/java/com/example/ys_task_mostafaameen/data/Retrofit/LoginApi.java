@@ -2,7 +2,6 @@ package com.example.ys_task_mostafaameen.data.Retrofit;
 
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequest;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginResponse;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 
 import retrofit2.Call;

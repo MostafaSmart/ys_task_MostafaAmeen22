@@ -21,7 +21,6 @@ import com.example.ys_task_mostafaameen.R;
 import com.example.ys_task_mostafaameen.adapters.GetOrderAdabter;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderMaster;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderResponse;
 import com.example.ys_task_mostafaameen.data.Repositorys.OrderRepository;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResultResponse;
 import com.example.ys_task_mostafaameen.helpers.Utils;
@@ -35,7 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class OrderFragment extends Fragment {
     private Button btnRefresh;
     private TextView trxtTitsl;
-    private GetOrderAdabter adabter ;
+    private GetOrderAdabter adapter ;
     private ImageButton btnNext;
     private LinearLayout cardHed;
     private final Handler handler = new Handler();
@@ -64,11 +63,6 @@ public class OrderFragment extends Fragment {
 
         ordersViewModels = new ViewModelProvider(this).get(OrdersViewModels.class);
 
-
-//        OrderRepository orderRepository = new OrderRepository();
-//        OrdersViewModelFactory authViewModelFactory = new OrdersViewModelFactory(orderRepository);
-//
-//        ordersViewModels = new ViewModelProvider(this,authViewModelFactory).get(OrdersViewModels.class);
     }
 
     @Override
@@ -76,36 +70,21 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=  inflater.inflate(R.layout.fragment_order, container, false);
 
+        initializeViews(view);
+        setupViewModels();
+        setupAutoRefresh();
 
-
-        implmnet(view);
-        setupViewModel();
-        setUpUpdateViewModel();
-
+        btnRefresh.setOnClickListener(v -> fetchOrders());
 
         return view;
     }
 
-
-    private void setUpUpdateViewModel(){
-        ordersViewModels.getUpdateResponseMutableLiveData().observe(getViewLifecycleOwner(), orderResponse -> {
-            if (orderResponse != null && orderResponse.getResult() != null) {
-                ResultResponse result = orderResponse.getResult();
-                if(result.getErrNo() ==0){
-                    Utils.showCustomSnackbar(requireContext(), requireView(), "The Order Is update !",1);
-
-                }
-                else{
-                    Utils.showCustomSnackbar(requireContext(), requireView(), "The Order Is not update X",0);
-
-                }
-
-            }
-        });
+    private void setupViewModels() {
+        observeOrders();
+        observeOrderUpdates();
     }
 
-    private void setupViewModel() {
-
+    private void setupAutoRefresh() {
         updateOrdersRunnable = new Runnable() {
             @Override
             public void run() {
@@ -114,53 +93,51 @@ public class OrderFragment extends Fragment {
             }
         };
         handler.post(updateOrdersRunnable);
+    }
 
 
+    private void observeOrderUpdates() {
+        ordersViewModels.getUpdateResponseMutableLiveData().observe(getViewLifecycleOwner(), orderResponse -> {
+            if (orderResponse == null || orderResponse.getResult() == null) return;
 
+            ResultResponse result = orderResponse.getResult();
+            String message = (result.getErrNo() == 0) ? "The Order is updated!" : "The Order update failed!";
+            int status = (result.getErrNo() == 0) ? 1 : 0;
+            Utils.showCustomSnackbar(requireContext(), requireView(), message, status);
+        });
+    }
+
+    private void observeOrders() {
         ordersViewModels.getAllOrdersResponse().observe(getViewLifecycleOwner(), orderResponse -> {
-            if (orderResponse != null && orderResponse.getData() != null) {
-                OrderResponse.Data dd=    orderResponse.getData();
+            if (orderResponse == null || orderResponse.getData() == null || orderResponse.getResult().getErrNo() != 0) {
+                textEmptyMasseg.setVisibility(View.VISIBLE);
+                return;
+            }
 
-                List<OrderMaster> orders =  dd.getOrderMasterList();
-
-                if(orders !=null){
-                    Log.d("Couns :", String.valueOf(orders.size()));
-                    textEmptyMasseg.setVisibility(View.GONE);
-
-                    if (adabter == null) {
-
-                        adabter = new GetOrderAdabter(orders, order -> {
-                            ordersViewModels.setUpdateResponseMutableLiveData(order);
-                        });
-                        orderRecyclerView.setAdapter(adabter);
-                    } else {
-                        adabter.updateOrders(orders);
-                    }
-
-                    btnNext.setOnClickListener(v ->
-                    {
-                        adabter.loadMore();
-                    });
-
-                    btnPrevious.setOnClickListener(v -> {
-                        adabter.loadPrevious();
-                    });
-                }
-                else{
-                    textEmptyMasseg.setVisibility(View.VISIBLE);
-
+            List<OrderMaster> orders = orderResponse.getData().getOrderMasterList();
+            if (orders == null || orders.isEmpty()) {
+                textEmptyMasseg.setVisibility(View.VISIBLE);
+            } else {
+                textEmptyMasseg.setVisibility(View.GONE);
+                if (adapter == null) {
+                    adapter = new GetOrderAdabter(orders, ordersViewModels::setUpdateResponseMutableLiveData);
+                    orderRecyclerView.setAdapter(adapter);
+                } else {
+                    adapter.updateOrders(orders);
                 }
 
-
+                btnNext.setOnClickListener(v -> adapter.loadMore());
+                btnPrevious.setOnClickListener(v -> adapter.loadPrevious());
             }
         });
     }
+
     private void fetchOrders() {
         GetAllOrderRequest.ValueGetOrder value = new GetAllOrderRequest.ValueGetOrder("87", "1", "4", "2");
         GetAllOrderRequest request = new GetAllOrderRequest(value);
         ordersViewModels.getAllOrders(request);
     }
-    private void implmnet(View view) {
+    private void initializeViews(View view) {
         cardHed = view.findViewById(R.id.cardHed);
         btnNext = view.findViewById(R.id.btnNext);
         trxtTitsl = view.findViewById(R.id.trxtTitsl);
@@ -171,5 +148,10 @@ public class OrderFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         orderRecyclerView.setLayoutManager(layoutManager);
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        handler.removeCallbacks(updateOrdersRunnable);
     }
 }

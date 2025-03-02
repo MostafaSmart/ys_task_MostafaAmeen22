@@ -1,5 +1,6 @@
 package com.example.ys_task_mostafaameen.data.Room.Dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -19,9 +20,17 @@ public interface UserDao {
     @Query("SELECT * FROM user_data WHERE user_id = :userId LIMIT 1")
     UserData getUserById(String userId);
 
-    @Query("SELECT * FROM user_data")
-    List<UserData> getAllUsers();
+
 
     @Query("DELETE FROM user_data")
     void deleteAllUsers();
+
+
+    @Query("SELECT * FROM user_data LIMIT 1")
+    LiveData<UserData> getCurrentUser();
+
+
+    @Query("SELECT COUNT(*) FROM user_data")
+    int getUserCount();
+
 }

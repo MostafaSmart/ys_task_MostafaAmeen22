@@ -21,7 +21,6 @@ import com.example.ys_task_mostafaameen.R;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.UpdateOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderMaster;
-import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderUpdateResponse;
 
 import java.util.List;
 
@@ -118,11 +117,11 @@ public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener li
 
 
 //        Log.d("countssProdacr:", String.valueOf(data.getOrderDetails().size()));
-//
-//        ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
-//        holder.recyclerViewOnePr.setLayoutManager(layoutManager);
-//        holder.recyclerViewOnePr.setAdapter(adabter);
+
+        ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+        holder.recyclerViewOnePr.setLayoutManager(layoutManager);
+        holder.recyclerViewOnePr.setAdapter(adabter);
 
 
 

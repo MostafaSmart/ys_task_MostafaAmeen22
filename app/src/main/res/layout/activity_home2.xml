@@ -196,7 +196,7 @@
 
             <androidx.cardview.widget.CardView
 
-                android:id="@+id/BtnLogout"
+                android:id="@+id/btnLogout"
                 style="@style/CardDefault"
                 android:layout_width="70dp"
                 android:layout_height="66dp"
