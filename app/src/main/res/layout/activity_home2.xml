@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="ltr"
     tools:context=".UI.activityes.HomeActivity">
 
     <LinearLayout
@@ -62,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="8dp"
-                        android:text="Orders"
+                        android:text="@string/orders"
                         android:textColor="@color/primmery" />
 
 
@@ -100,7 +99,7 @@
                         android:layout_gravity="center_horizontal"
 
                         android:layout_marginTop="8dp"
-                        android:text="history"
+                        android:text="@string/history"
                         android:textColor="@color/primmery" />
 
 
@@ -138,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="8dp"
-                        android:text="summary"
+                        android:text="@string/summary"
                         android:textColor="@color/primmery" />
 
 
@@ -185,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="8dp"
-                        android:text="Langoug"
+                        android:text="@string/langoug"
                         android:textColor="@color/primmery" />
 
 
@@ -223,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="8dp"
-                        android:text="Logout"
+                        android:text="@string/logout"
                         android:textColor="@color/primmery" />
 
 
@@ -321,7 +320,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/green"
-                            android:text="New" />
+                            android:text="@string/neww" />
 
                     </LinearLayout>
 
@@ -344,7 +343,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/pink"
-                            android:text="Delayed" />
+                            android:text="@string/delayed" />
 
                     </LinearLayout>
 
@@ -367,7 +366,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/primmery"
-                            android:text="Changed" />
+                            android:text="@string/changed" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -389,7 +388,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/gry"
-                            android:text="Canceled" />
+                            android:text="@string/canceled" />
 
                     </LinearLayout>
                 </LinearLayout>

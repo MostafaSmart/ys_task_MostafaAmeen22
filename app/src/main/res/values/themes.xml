@@ -29,6 +29,17 @@
             <item name="cardCornerRadius">15dp</item>
 
         </style>
+    <style name="AppTheme.ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/primmery</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/circal_backgrund_numbers</item>
+    </style>
+
+
+
 
 
 </resources>

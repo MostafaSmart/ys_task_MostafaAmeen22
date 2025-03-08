@@ -2,8 +2,8 @@ package com.example.ys_task_mostafaameen.Hilt;
 
 import com.example.ys_task_mostafaameen.data.Repositorys.LoginRepository;
 import com.example.ys_task_mostafaameen.data.Retrofit.LoginApi;
-import com.example.ys_task_mostafaameen.data.Room.Dao.UserDao;
-import com.example.ys_task_mostafaameen.data.Room.Helpers.UserDatabaseHelper;
+import com.example.ys_task_mostafaameen.data.Room.User.Dao.UserDao;
+import com.example.ys_task_mostafaameen.data.Room.User.Helpers.UserDatabaseHelper;
 
 import javax.inject.Singleton;
 

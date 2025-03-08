@@ -89,7 +89,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="Order type"
+                            android:text="@string/order_type"
                             android:textColor="#383535"
                             android:textSize="12dp"
                             android:layout_height="wrap_content"/>
@@ -116,7 +116,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="TakenTime"
+                            android:text="@string/takentime"
                             android:textColor="#383535"
                             android:textSize="12dp"
                             android:layout_height="wrap_content"/>
@@ -156,7 +156,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:background="@drawable/doleyd_background"
-        android:text="START PREPARE"
+        android:text="@string/start_prepare"
         android:drawableStart="@drawable/play"
         android:textColor="@color/white"
         android:layout_height="wrap_content"/>
@@ -167,7 +167,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:background="@drawable/pupm_background"
-        android:text="PUMP"
+        android:text="@string/pump"
         android:drawableStart="@drawable/ic_pump"
         android:textColor="@color/white"
         android:layout_height="wrap_content"/>

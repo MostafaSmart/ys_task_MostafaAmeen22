@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     android:orientation="horizontal"
-    android:layoutDirection="ltr"
+
     tools:context=".UI.activityes.LoginActivity">
 
 
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log in"
+                android:text="@string/log_in"
                 android:textSize="48dp"
                 android:textColor="@color/primmery"
                 android:textStyle="bold"
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Please enter your PIN code to log in"
+                android:text="@string/please_enter_your_pin_code_to_log_in"
                 android:textSize="16dp"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"/>
@@ -64,52 +64,53 @@
             android:gravity="center"
 
             android:layout_height="wrap_content">
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:id="@+id/card1"
                 android:layout_marginStart="8dp"
-                app:cardCornerRadius="50dp"
+
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_marginStart="8dp"
                 android:id="@+id/card2"
 
-                app:cardCornerRadius="50dp"
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_marginStart="8dp"
                 android:id="@+id/card3"
 
-                app:cardCornerRadius="50dp"
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_marginStart="8dp"
                 android:id="@+id/card4"
 
-                app:cardCornerRadius="50dp"
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_marginStart="8dp"
 
                 android:id="@+id/card5"
 
-                app:cardCornerRadius="50dp"
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="20dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 android:layout_marginStart="8dp"
                 android:id="@+id/card6"
 
-                app:cardCornerRadius="50dp"
                 app:cardBackgroundColor="@color/lite_blue"
                 android:layout_height="20dp"/>
         </LinearLayout>
@@ -123,20 +124,19 @@
                 android:layout_gravity="center_horizontal">
 
 
-                <android.widget.Button android:id="@+id/btn1" android:layout_width="64dp"  android:layout_margin="4dp" android:layout_height="64dp" android:text="1" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn2" android:layout_width="64dp"  android:layout_margin="4dp" android:layout_height="64dp" android:text="2" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:layout_width="64dp" android:id="@+id/btn3"  android:layout_margin="4dp" android:layout_height="64dp" android:text="3" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-
-                <android.widget.Button  android:layout_margin="4dp" android:id="@+id/btn4" android:layout_width="64dp" android:layout_height="64dp" android:text="4" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn5"  android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="5" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn6"   android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="6" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn7"  android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="7" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn8"  android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="8" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
-                <android.widget.Button android:id="@+id/btn9" android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="9" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
+                <android.widget.Button android:id="@+id/btn1" android:text="1" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn2" android:text="2" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn3" android:text="3" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn4" android:text="4" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn5" android:text="5" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn6" android:text="6" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn7" android:text="7" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn8" android:text="8" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
+                <android.widget.Button android:id="@+id/btn9" android:text="9" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
 
 
                 <ImageButton android:id="@+id/exitButton"  android:layout_margin="4dp" android:src="@drawable/ic_exit" android:background="@drawable/circal_back"/>
-                <android.widget.Button android:id="@+id/btn0"  android:layout_margin="4dp" android:layout_width="64dp" android:layout_height="64dp" android:text="0" android:textSize="24sp" android:textColor="@color/primmery" android:background="@drawable/circal_backgrund_numbers"/>
+                <android.widget.Button android:id="@+id/btn0" android:text="0" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
                 <ImageButton android:id="@+id/deleteButton"  android:layout_margin="4dp" android:src="@drawable/ic_delete" android:background="@drawable/circal_back"/>
 
 
@@ -153,7 +153,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_button"
             android:textSize="24sp"
-            android:text="Try Demo"
+            android:text="@string/try_demo"
             android:paddingHorizontal="60dp"
 
             android:textColor="@color/primmery"

@@ -13,12 +13,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ys_task_mostafaameen.MVVM.ModelFactory.AuthViewModelFactory;
 import com.example.ys_task_mostafaameen.MVVM.ViewModels.AuthModelView;
 import com.example.ys_task_mostafaameen.R;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequest;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginValue;
 import com.example.ys_task_mostafaameen.data.Repositorys.LoginRepository;
+import com.google.android.material.card.MaterialCardView;
 //import com.example.ys_task_mostafaameen.data.Room.Entity.UserDataRoom;
 
 import java.util.ArrayList;
@@ -27,11 +27,12 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class LoginActivity extends AppCompatActivity {
-    private List<CardView> pinIndicators = new ArrayList<>();
+public class LoginActivity extends BaseActivity {
+    private List<MaterialCardView> pinIndicators = new ArrayList<>();
     private StringBuilder pinCode = new StringBuilder();
     private static final int PIN_LENGTH = 6;
     private ImageButton deleteButton;
+
     private  android.widget.Button btnDoLogin;
     private   ImageButton exitButton;
     private AuthModelView authViewModel ;
@@ -120,6 +121,11 @@ public class LoginActivity extends AppCompatActivity {
             updateIndicators();
 
             if (pinCode.length() == PIN_LENGTH) {
+                String enteredPin = pinCode.toString();
+
+                LoginValue valuem = new LoginValue("87","1",enteredPin);
+                LoginRequest loginRequest = new LoginRequest(valuem);
+                authViewModel.login(loginRequest);
             }
         }
     }

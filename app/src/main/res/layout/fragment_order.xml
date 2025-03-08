@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
-            android:text="Orders" />
+            android:text="@string/orders" />
 
 
         <LinearLayout
@@ -61,7 +61,7 @@
                 android:id="@+id/btnRefresh"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Refresh"
+                android:text="@string/refresh"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:drawableLeft="@drawable/ic_refresh"
@@ -76,7 +76,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:text="NO ORDERS YET"
+        android:text="@string/no_orders_yet"
         android:textColor="@color/red"
         android:gravity="center"
         android:id="@+id/textEmptyMasseg"

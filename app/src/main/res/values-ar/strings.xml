@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_in">تسجيل الدخول</string>
+    <string name="langoug">اللغة</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="summary">الملخص</string>
+    <string name="orders">الطلبات</string>
+    <string name="history">السجل</string>
+    <string name="canceled">ملغى</string>
+    <string name="changed">مُعدل</string>
+    <string name="delayed">مؤجل</string>
+    <string name="neww">جديد</string>
+    <string name="please_enter_your_pin_code_to_log_in">الرجاء إدخال رمز PIN لتسجيل الدخول</string>
+    <string name="try_demo">تجربة العرض التوضيحي</string>
+    <string name="refresh">تحديث</string>
+    <string name="no_orders_yet">لا توجد طلبات حتى الآن</string>
+    <string name="order_type">نوع الطلب</string>
+    <string name="takentime">وقت الاستلام</string>
+    <string name="start_prepare">بدء التحضير</string>
+    <string name="pump">مضخة</string>
+</resources>

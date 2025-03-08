@@ -1,13 +1,11 @@
-package com.example.ys_task_mostafaameen.data.Room.Helpers;
+package com.example.ys_task_mostafaameen.data.Room.User.Helpers;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.ys_task_mostafaameen.data.Room.User.Dao.UserDao;
 import com.example.ys_task_mostafaameen.data.model.UserData;
-import com.example.ys_task_mostafaameen.data.Room.AppDatabase;
-import com.example.ys_task_mostafaameen.data.Room.Dao.UserDao;
 
 import javax.inject.Inject;
 

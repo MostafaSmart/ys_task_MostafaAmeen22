@@ -6,13 +6,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.ys_task_mostafaameen.data.model.UserData;
-import com.example.ys_task_mostafaameen.data.Room.Dao.UserDao;
+import com.example.ys_task_mostafaameen.data.Room.User.Dao.UserDao;
+import com.example.ys_task_mostafaameen.data.Room.Settings.SettingsDao;
+import com.example.ys_task_mostafaameen.data.Room.Settings.SettingsEntity;
 
-@Database(entities = {UserData.class}, version = 1, exportSchema = false)
+
+@Database(entities = {UserData.class, SettingsEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
     public abstract UserDao userDao();
+    public abstract SettingsDao settingsDao();
+
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {

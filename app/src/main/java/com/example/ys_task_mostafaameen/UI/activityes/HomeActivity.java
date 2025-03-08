@@ -7,13 +7,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.ys_task_mostafaameen.R;
@@ -21,6 +18,7 @@ import com.example.ys_task_mostafaameen.UI.fragments.HistoryFragment;
 import com.example.ys_task_mostafaameen.UI.fragments.OrderFragment;
 import com.example.ys_task_mostafaameen.UI.fragments.SummaryFragment;
 import com.example.ys_task_mostafaameen.data.Repositorys.LoginRepository;
+import com.example.ys_task_mostafaameen.helpers.LocaleHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +28,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     private TextView txtUserName;
     private ImageView imageView;
     private FrameLayout main_home;
@@ -42,8 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private androidx.cardview.widget.CardView btnLogout;
     private androidx.cardview.widget.CardView btnHistory;
     private androidx.constraintlayout.widget.ConstraintLayout main;
-    private final int defaultStyle = R.style.CardDefault;
-    private final int pressedStyle = R.style.CardPressed;
+
     private List<CardView> cardViews;
 
     @Inject
@@ -52,8 +49,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home2);
+
         implmnt();
 
         setFragment(new OrderFragment());
@@ -66,7 +65,21 @@ public class HomeActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> logOut());
 
 
+        btnLangog.setOnClickListener(v ->  setLang());
+
     }
+
+    private void setLang() {
+        String ss =   settingsViewModel.setLanguage();
+
+        Toast.makeText(this,ss,Toast.LENGTH_SHORT).show();
+
+        LocaleHelper.setLocale(this,ss);
+
+
+        recreate();
+    }
+
 
     private void logOut() {
         new Thread(() -> {

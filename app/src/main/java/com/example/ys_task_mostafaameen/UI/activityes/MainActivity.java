@@ -4,26 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.ys_task_mostafaameen.MVVM.ViewModels.AuthModelView;
 import com.example.ys_task_mostafaameen.R;
 //import com.example.ys_task_mostafaameen.data.Room.Entity.UserDataRoom;
-import com.example.ys_task_mostafaameen.data.model.UserData;
-import com.example.ys_task_mostafaameen.data.Room.Helpers.UserDatabaseHelper;
+import com.example.ys_task_mostafaameen.data.Room.User.Helpers.UserDatabaseHelper;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @Inject
     UserDatabaseHelper dbHelper;
 

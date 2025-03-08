@@ -1,4 +1,4 @@
-package com.example.ys_task_mostafaameen.data.Room.Dao;
+package com.example.ys_task_mostafaameen.data.Room.User.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
