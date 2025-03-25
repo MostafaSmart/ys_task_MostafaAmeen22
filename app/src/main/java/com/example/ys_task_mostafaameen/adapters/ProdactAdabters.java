@@ -1,6 +1,7 @@
 package com.example.ys_task_mostafaameen.adapters;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,7 @@ import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderDet
 import java.util.List;
 
 public class ProdactAdabters extends RecyclerView.Adapter<ProdactAdabters.ProdactViewHolder> {
-
     private List<OrderDetail> postList;
-
-
     public ProdactAdabters(List<OrderDetail> postList) {
         this.postList = postList;
 
@@ -42,34 +40,30 @@ public class ProdactAdabters extends RecyclerView.Adapter<ProdactAdabters.Prodac
 
         holder.txtProdect.setText(data.getItemName());
 
+        holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.normal));
+
         if("1".equals(data.getCancelFlag())){
+
+            holder.checkBox.setChecked(false);
+
+            holder.txtProdect.setPaintFlags(holder.txtProdect.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
             holder.txtProdect.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gry));
             holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gry));
-            holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_gry));
 
-
-        } else if ("1".equals(data.getProcessedFlag())) {
-            holder.txtProdect.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.primmery));
-            holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.primmery));
-            holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_blue));
 
         }
+
         else{
             switch (data.getItemStatus()) {
                 case "1":
-                    holder.txtProdect.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
                     holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
-                    holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_green));
                     break;
                 case "2":
-                    holder.txtProdect.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.pink));
-                    holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.pink));
-                    holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_pink));
+                    holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.primmery));
                     break;
                 case "3":
-                    holder.txtProdect.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.pink));
                     holder.colorView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.pink));
-                    holder.cardMAin.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_pink));
 
                     break;
                 default:

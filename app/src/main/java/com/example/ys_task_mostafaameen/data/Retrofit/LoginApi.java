@@ -1,6 +1,7 @@
 package com.example.ys_task_mostafaameen.data.Retrofit;
 
-import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequest;
+import com.example.ys_task_mostafaameen.data.model.RequestModels.BaseRequest;
+import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginValue;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
 
@@ -15,5 +16,5 @@ public interface LoginApi {
 //    Call<LoginResponse> login(@Body LoginRequest authRequest);
 
     @POST("tables.php?action=GetUserDetails")
-    Call<ResponseBaseModel<LoginData>> login(@Body LoginRequest authRequest);
+    Call<ResponseBaseModel<LoginData>> login(@Body BaseRequest<LoginValue> authRequest);
 }

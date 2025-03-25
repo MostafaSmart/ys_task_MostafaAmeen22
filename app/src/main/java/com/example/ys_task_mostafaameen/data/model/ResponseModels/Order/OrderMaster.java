@@ -55,7 +55,6 @@ public class OrderMaster {
     @SerializedName("ordrDtl")
     private List<OrderDetail> orderDetails;
 
-    // الحقول الإضافية الموجودة في JSON ولكن غير موجودة في الكود الأصلي
     @SerializedName("BILL_SRL")
     private String billSerial;
 

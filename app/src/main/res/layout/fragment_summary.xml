@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".UI.fragments.SummaryFragment">
+    tools:context=".UI.home.summary.SummaryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

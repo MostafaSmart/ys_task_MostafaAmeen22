@@ -5,6 +5,8 @@
     <color name="primmery">#075060</color>
     <color name="red">#FF2323</color>
     <color name="lite_blue">#DDF9FF</color>
+    <color name="lite_blue2">#E8FBFF</color>
+
     <color name="lite_pink">#FFD6DD</color>
     <color name="pink">#F4637C</color>
     <color name="lite_green">#D4FFCC</color>
@@ -12,4 +14,9 @@
     <color name="lite_gry">#D5D5D5</color>
     <color name="gry">#6A6A6A</color>
     <color name="redd">#EB1D25</color>
+    <color name="normal">#F8F8F8</color>
+
+    <color name="cansel_1">#2C2F2F</color>
+
+
 </resources>

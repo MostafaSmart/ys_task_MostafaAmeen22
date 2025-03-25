@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="437dp"
+    android:layout_height="289dp"
+    app:cardCornerRadius="8dp"
+    android:layout_gravity="center"
+
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="39dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <!-- أيقونة تسجيل الخروج -->
+        <ImageView
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logout"
+            app:tint="@color/red" />
+
+        <!-- نص التأكيد -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you sure you want to logout?"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="24sp"
+            android:layout_gravity="center" />
+
+        <!-- أزرار إلغاء وتسجيل الخروج -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+
+
+
+
+            <com.rey.material.widget.Button
+                android:background="@drawable/btn_background"
+                android:layout_width="150dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="32dp"
+                android:id="@+id/btnCansel"
+
+                android:textColor="@color/black"
+                style="@style/TextAppearance.MaterialComponents.Button"
+                android:text="Cansel"
+                app:rd_enable="true"/>
+            <com.rey.material.widget.Button
+                android:background="@drawable/dialog_background"
+                android:layout_width="150dp"
+                android:layout_height="44dp"
+                android:id="@+id/btnLogout"
+
+                android:textColor="@color/white"
+                style="@style/TextAppearance.MaterialComponents.Button"
+                android:text="Lougout"
+                app:rd_enable="true"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

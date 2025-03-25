@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".UI.app.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,16 +17,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".UI.activityes.BaseActivity"
+            android:name=".UI.app.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.activityes.HomeActivity"
+            android:name=".UI.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.activityes.LoginActivity"
+            android:name=".UI.auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.activityes.MainActivity"
+            android:name=".UI.splash.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

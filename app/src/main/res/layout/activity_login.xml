@@ -1,47 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
+    android:padding="48dp"
     android:orientation="horizontal"
 
-    tools:context=".UI.activityes.LoginActivity">
-
+    tools:context=".UI.auth.LoginActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logoImage"
-            android:layout_width="160.03dp"
-            android:layout_height="203dp"
+            <ImageView
+                android:id="@+id/logoImage2"
+                android:layout_width="179.94dp"
+                android:layout_height="71.27dp"
+                android:layout_gravity="center"
+                android:contentDescription="Chef Logo"
+                android:src="@drawable/logog"
+
+                android:layout_marginBottom="47.91dp"
+                android:layout_marginTop="166.19dp"
+                android:layout_marginStart="135.09dp"
+                android:layout_marginEnd="155.97dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="160.03dp"
+                android:layout_height="203dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chef"
+                android:contentDescription="Chef Logo"
+                />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:layout_gravity="center"
-            android:src="@drawable/ic_chef"
-            android:contentDescription="Chef Logo"
- />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
 
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="136dp"
+                android:layout_height="75dp"
                 android:text="@string/log_in"
                 android:textSize="48dp"
                 android:textColor="@color/primmery"
@@ -49,122 +69,242 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="242dp"
+                android:layout_height="17dp"
                 android:text="@string/please_enter_your_pin_code_to_log_in"
                 android:textSize="16dp"
+                android:layout_marginTop="12dp"
+
                 android:layout_gravity="center_horizontal"
-                android:paddingBottom="16dp"/>
+                />
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp"
+                android:orientation="vertical"
+                >
 
-            android:layout_height="wrap_content">
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:id="@+id/card1"
-                android:layout_marginStart="8dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_marginStart="8dp"
-                android:id="@+id/card2"
+                    android:layout_marginBottom="28dp"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:id="@+id/card1"
+                        android:layout_marginEnd="16dp"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_marginStart="8dp"
-                android:id="@+id/card3"
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/card2"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_marginStart="8dp"
-                android:id="@+id/card4"
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/card3"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_marginStart="8dp"
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/card4"
 
-                android:id="@+id/card5"
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_marginEnd="16dp"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="20dp"
-                style="@style/Widget.Material3.CardView.Elevated"
-                android:layout_marginStart="8dp"
-                android:id="@+id/card6"
+                        android:id="@+id/card5"
 
-                app:cardBackgroundColor="@color/lite_blue"
-                android:layout_height="20dp"/>
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="20dp"
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/card6"
+
+                        app:cardBackgroundColor="@color/lite_blue"
+                        android:layout_height="20dp"/>
+                </LinearLayout>
+
+
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+
+
+                    android:layout_gravity="center_horizontal">
+
+
+                    <android.widget.Button
+                        android:id="@+id/btn1"
+                        android:text="1"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                         />
+
+                    <android.widget.Button
+                        android:id="@+id/btn2"
+                        android:text="2"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                     />
+
+                    <android.widget.Button
+                        android:id="@+id/btn3"
+                        android:text="3"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                    <android.widget.Button
+                        android:id="@+id/btn4"
+                        android:text="4"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                    />
+
+                    <android.widget.Button
+                        android:id="@+id/btn5"
+                        android:text="5"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                       />
+
+                    <android.widget.Button
+                        android:id="@+id/btn6"
+                        android:text="6"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                     />
+
+                    <android.widget.Button
+                        android:id="@+id/btn7"
+                        android:text="7"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                       />
+
+                    <android.widget.Button
+                        android:id="@+id/btn8"
+                        android:text="8"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                        />
+
+                    <android.widget.Button
+                        android:id="@+id/btn9"
+                        android:text="9"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/exitButton"
+                        android:src="@drawable/ic_exit"
+                        style="@style/AppTheme.claareBtn"
+                        android:clickable="true"
+                    />
+
+                    <android.widget.Button
+                        android:id="@+id/btn0"
+                        android:text="0"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+                 />
+
+                    <ImageButton
+                        android:id="@+id/deleteButton"
+                        android:src="@drawable/ic_delete"
+                        style="@style/AppTheme.ButtonStyle"
+                        android:clickable="true"
+/>
+
+
+                </GridLayout>
+
+
+
+                <android.widget.Button
+                    android:id="@+id/btnDoLogin"
+                    android:layout_width="248dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/rounded_button"
+                    android:textSize="16dp"
+                    android:text="@string/try_demo"
+
+                    android:textColor="@color/primmery"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="25dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/setting_iv"
+
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="16dp"
+
+                        android:gravity="center"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_settings"
+                        />
+                    <ImageView
+                        android:id="@+id/language_iv"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="16dp"
+
+                        android:gravity="center"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/world"
+                        />
+
+                    <ImageView
+                        android:id="@+id/support_iv"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="16dp"
+
+                        android:gravity="center"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/iconl"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-
-
-            <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-
-                android:layout_gravity="center_horizontal">
-
-
-                <android.widget.Button android:id="@+id/btn1" android:text="1" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn2" android:text="2" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn3" android:text="3" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn4" android:text="4" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn5" android:text="5" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn6" android:text="6" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn7" android:text="7" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn8" android:text="8" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <android.widget.Button android:id="@+id/btn9" android:text="9" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-
-
-                <ImageButton android:id="@+id/exitButton"  android:layout_margin="4dp" android:src="@drawable/ic_exit" android:background="@drawable/circal_back"/>
-                <android.widget.Button android:id="@+id/btn0" android:text="0" style="@style/AppTheme.ButtonStyle" ></android.widget.Button>
-                <ImageButton android:id="@+id/deleteButton"  android:layout_margin="4dp" android:src="@drawable/ic_delete" android:background="@drawable/circal_back"/>
-
-
-
-            </GridLayout>
-
-
-
-        <android.widget.Button
-            android:id="@+id/btnDoLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/rounded_button"
-            android:textSize="24sp"
-            android:text="@string/try_demo"
-            android:paddingHorizontal="60dp"
-
-            android:textColor="@color/primmery"
-            />
 
 
     </LinearLayout>
 
 
 
-
-
-
-</LinearLayout>
+</ScrollView>

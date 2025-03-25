@@ -17,7 +17,7 @@ public class Utils {
     public static void showCustomSnackbar(Context context, View rootView, String message ,int flag) {
         if (rootView == null) return;
 
-        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG);
 
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(ContextCompat.getColor(context, android.R.color.white));

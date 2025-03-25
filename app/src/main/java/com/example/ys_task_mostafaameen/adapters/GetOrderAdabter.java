@@ -1,14 +1,12 @@
 package com.example.ys_task_mostafaameen.adapters;
 
-//import static androidx.appcompat.graphics.drawable.DrawableContainerCompat.Api21Impl.getResources;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ys_task_mostafaameen.R;
-import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.GetAllOrderRequest;
+import com.example.ys_task_mostafaameen.data.model.RequestModels.BaseRequest;
 import com.example.ys_task_mostafaameen.data.model.RequestModels.Order.UpdateOrderRequest;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Order.OrderMaster;
 
@@ -32,7 +30,7 @@ private List<OrderMaster> postList;
 
 
     public interface OnOrderStatusChangeListener {
-        void onOrderStatusChange(UpdateOrderRequest order);
+        void onOrderStatusChange(BaseRequest<UpdateOrderRequest> order);
     }
 public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener listener) {
         this.postList = postList;
@@ -75,17 +73,22 @@ public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener li
             holder.txtState.setText("Canceled");
             holder.txtState.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gry));
             holder.colorItem.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_gry));
+
+            holder.txtOrderState.setPaintFlags(holder.txtOrderState.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             switch (data.getOrderStatus()) {
                 case "1":
                     holder.txtState.setText("New");
                     holder.txtState.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
-                    holder.colorItem.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_green));
+                    holder.txtOrderState.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.green));
 
+                    holder.colorItem.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_green));
                     break;
                 case "2":
-                    holder.txtState.setText("Modified");
-                    holder.txtState.setTextColor(Color.BLUE);
+                    holder.txtState.setText("Changed");
+                    holder.txtState.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.primmery));
+                    holder.txtOrderState.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.primmery));
+                    holder.colorItem.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.lite_blue2));
 
                     break;
                 case "3":
@@ -116,12 +119,15 @@ public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener li
           }
 
 
-//        Log.d("countssProdacr:", String.valueOf(data.getOrderDetails().size()));
 
-        ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
-        holder.recyclerViewOnePr.setLayoutManager(layoutManager);
-        holder.recyclerViewOnePr.setAdapter(adabter);
+          if (data.getOrderDetails()!=null && data.getOrderDetails().size()>0){
+              ProdactAdabters adabter = new ProdactAdabters(data.getOrderDetails());
+              LinearLayoutManager layoutManager = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+              holder.recyclerViewOnePr.setLayoutManager(layoutManager);
+              holder.recyclerViewOnePr.setAdapter(adabter);
+          }
+
+
 
 
 
@@ -138,12 +144,11 @@ public GetOrderAdabter(List<OrderMaster> postList,OnOrderStatusChangeListener li
     }
 
     private void updateRequest(String s_n) {
-            UpdateOrderRequest.ValueUpdateOrder value = new UpdateOrderRequest.ValueUpdateOrder(s_n,"1","1","87");
-
-            UpdateOrderRequest orderRequest = new UpdateOrderRequest(value);
+            UpdateOrderRequest value = new UpdateOrderRequest(s_n,"1","1","87");
+        BaseRequest<UpdateOrderRequest> updateOrderRequest =new  BaseRequest(value);
 
             if (listener != null) {
-                listener.onOrderStatusChange(orderRequest);
+                listener.onOrderStatusChange(updateOrderRequest);
             }
 
     }
@@ -208,3 +213,5 @@ static class OrderViewHolder extends RecyclerView.ViewHolder {
     }
 }
 }
+
+

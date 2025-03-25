@@ -4,8 +4,10 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import java.util.function.Consumer;
 
-import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginRequest;
+import com.example.ys_task_mostafaameen.data.model.RequestModels.BaseRequest;
+import com.example.ys_task_mostafaameen.data.model.RequestModels.Login.LoginValue;
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.Login.LoginData;
 //import com.example.ys_task_mostafaameen.data.Api.RequestModels
 import com.example.ys_task_mostafaameen.data.model.ResponseModels.ResponseBaseModel;
@@ -13,6 +15,9 @@ import com.example.ys_task_mostafaameen.data.model.UserData;
 import com.example.ys_task_mostafaameen.data.Retrofit.LoginApi;
 //import com.example.ys_task_mostafaameen.data.Room.Entity.UserDataRoom;
 import com.example.ys_task_mostafaameen.data.Room.User.Helpers.UserDatabaseHelper;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,17 +29,20 @@ import retrofit2.Response;
 public class LoginRepository {
     private final LoginApi api;
     private final UserDatabaseHelper dbHelper;
+    private final ExecutorService executorService;
+
 
     @Inject
     public LoginRepository(LoginApi api, UserDatabaseHelper dbHelper) {
         this.api = api;
         this.dbHelper = dbHelper;
+        this.executorService = Executors.newSingleThreadExecutor();
+
     }
 
-    public LiveData<ResponseBaseModel<LoginData>> login (LoginRequest authRequest){
+    public LiveData<ResponseBaseModel<LoginData>> login (BaseRequest<LoginValue>  authRequest){
 
         MutableLiveData<ResponseBaseModel<LoginData>> data = new MutableLiveData<>();
-        Log.d("data_request" ,authRequest.getValue().getUnitNo() + " " +authRequest.getValue().getPassword());
 
         Call<ResponseBaseModel<LoginData>> call = api.login(authRequest);
 
@@ -42,18 +50,9 @@ public class LoginRepository {
             @Override
             public void onResponse(Call<ResponseBaseModel<LoginData>> call, Response<ResponseBaseModel<LoginData>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
-                    Log.d("API_RESPONSE", response.body().toString());
-
-                    LoginData dd =  response.body().getData();
-                    Log.d("API_RESPONSE22", dd.toString());
-                    setUserSave(dd.getUserData());
-
-
                     data.setValue(response.body());
 
                 } else {
-
                     Log.d("API_RESPONSE", response.toString());
                     data.setValue(null);
                 }
@@ -61,7 +60,6 @@ public class LoginRepository {
             }
 
             @Override
-
             public void onFailure(Call<ResponseBaseModel<LoginData>> call, Throwable t) {
                 Log.d("API_ERROR", t.getMessage());
                 data.setValue(null);
@@ -72,28 +70,21 @@ public class LoginRepository {
 
         return data;
     }
+    public void insertUserLoacl(UserData userData) {
+        executorService.execute(() -> dbHelper.insertUser(userData));
+    }
 
-    public LiveData<UserData> getCurrentUserLiveData() {
+    public LiveData<UserData> getCurrentUser() {
         return dbHelper.getCurrentUserLiveData();
     }
 
-    private void setUserSave(UserData userData) {
-        UserData user = new UserData();
 
-        user.setUserId(userData.getUserId());
-        user.setAdminName(userData.getAdminName());
-        user.setPassword(userData.getPassword());
-        user.setLogin(userData.getLogin());
-        user.setTerminalNo(userData.getTerminalNo());
-        user.setTerminalName(userData.getTerminalName());
-        dbHelper.insertUser(user);
+    public void logout(Runnable callback) {
+        dbHelper.logout(callback);
     }
 
-
-    public boolean logout(){
-        dbHelper.logout();
-        return dbHelper.getUserCount()==0;
+    public LiveData<Integer> getUserCount() {
+        return dbHelper.getUserCount();
     }
-
 
 }
